@@ -1,12 +1,19 @@
+import os # operating system
+
 # 读取档案
 products = []
-with open('products.csv', 'r', encoding = 'utf-8') as f:
-	for line in f:
-		if '商品, 价格' in line:
-			continue # 继续（跳到下一回）
-		name, price = line.strip().split(',') # 做这步的目的是让清单的格式变回和下面的一样，这样后面再做处理就不会出错
-		products.append([name,price])
-print(products)
+#检查档案在不在
+if os.path.isfile('products.csv'):
+	print('yeah!')
+	with open('products.csv', 'r', encoding = 'utf-8') as f:
+		for line in f:
+			if '商品, 价格' in line:
+				continue # 继续（跳到下一回）
+			name, price = line.strip().split(',') # 做这步的目的是让清单的格式变回和下面的一样，这样后面再做处理就不会出错
+			products.append([name,price])
+		print(products)
+else:
+	print('找不到档案....')
 
 # 让使用者输入
 while True:
